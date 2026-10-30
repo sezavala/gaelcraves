@@ -7,8 +7,8 @@ import { asset } from "@/lib/site";
 const SHOW_SHOT_LABELS = false;
 
 type Props = {
-  shot: string; // shot ID from the shot list, e.g. "L1"
-  label: string; // what the shot is, shown only when SHOW_SHOT_LABELS is true
+  shot?: string; // shot ID from the shot list, e.g. "L1"
+  label?: string; // what the shot is, shown only when SHOW_SHOT_LABELS is true
   video?: string; // e.g. "media/step-1.mp4"
   poster?: string;
   photo?: string; // e.g. "media/photo-e1.jpg"

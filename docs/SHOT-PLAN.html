@@ -1,0 +1,257 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Gaelcraves Shoot Plan</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bowlby+One&family=Archivo:wght@400;600;800&family=IBM+Plex+Mono:wght@400;600&display=swap">
+<style>
+/* Layout: a field guide. Directions up top to pick a look, then a tappable shot list to carry on set. */
+:root {
+  --bg: #f6f4ee; --surface: #ffffff; --fg: #1b1816; --muted: #6b625b; --line: #ddd6cc;
+  --hot: #d6301b; --mustard: #b88600; --chip: #fff1c7;
+  --f-display: "Bowlby One", "Arial Black", Impact, sans-serif;
+  --f-body: "Archivo", "Helvetica Neue", Arial, sans-serif;
+  --f-mono: "IBM Plex Mono", ui-monospace, Menlo, monospace;
+}
+@media (prefers-color-scheme: dark) { :root:not([data-theme="light"]) {
+  --bg: #14110f; --surface: #1f1a17; --fg: #f3eee8; --muted: #b3a89f; --line: #3a322d;
+  --hot: #ff5a3c; --mustard: #ffc627; --chip: #3a2f12; color-scheme: dark } }
+:root[data-theme="dark"] {
+  --bg: #14110f; --surface: #1f1a17; --fg: #f3eee8; --muted: #b3a89f; --line: #3a322d;
+  --hot: #ff5a3c; --mustard: #ffc627; --chip: #3a2f12; color-scheme: dark }
+
+body { background: var(--bg); color: var(--fg); font: 400 15px/1.55 var(--f-body);
+  padding-left: max(16px, env(safe-area-inset-left, 0px)); padding-right: max(16px, env(safe-area-inset-right, 0px)); padding-block: 0 4rem; }
+.wrap { max-width: 980px; margin: 0 auto; display: grid; gap: 3rem; }
+h1, h2, h3 { font-family: var(--f-display); font-weight: 400; line-height: 1; margin: 0; text-wrap: balance; text-transform: uppercase; }
+h1 { font-size: clamp(2.4rem, 8vw, 4.5rem); }
+h1 span { color: var(--hot); }
+h2 { font-size: clamp(1.6rem, 4.5vw, 2.4rem); }
+h3 { font-size: 1.25rem; }
+p { margin: 0; max-width: 68ch; }
+a { color: var(--hot); }
+.label { font: 600 .75rem/1.2 var(--f-mono); letter-spacing: .12em; text-transform: uppercase; color: var(--mustard); }
+header.intro { display: grid; gap: 1rem; padding-top: 2.5rem; }
+.facts { display: flex; flex-wrap: wrap; gap: .5rem; }
+.facts span { font: 600 .8rem/1 var(--f-mono); background: var(--chip); padding: .45em .7em; border-radius: 3px; }
+section { display: grid; gap: 1.25rem; }
+
+/* Directions */
+.dirs { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 420px), 1fr)); gap: 1rem; }
+.dir { background: var(--surface); border: 1px solid var(--line); border-radius: 6px; padding: 1.25rem; display: grid; gap: .8rem; align-content: start; min-width: 0; }
+.dir.is-built { border: 2px solid var(--hot); }
+.dir header { display: flex; justify-content: space-between; align-items: baseline; gap: 1rem; }
+.dir .tag { font: 600 .7rem/1 var(--f-mono); text-transform: uppercase; letter-spacing: .1em; color: var(--hot); white-space: nowrap; }
+.dir ul { margin: 0; padding: 0; list-style: none; display: grid; gap: .55rem; }
+.dir li { font-size: .92rem; }
+.dir li a { font-weight: 800; }
+.dir .idea { font-size: .92rem; color: var(--muted); }
+
+/* Settings */
+.settings { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 280px), 1fr)); gap: .75rem 2rem; }
+.settings div { border-top: 2px solid var(--fg); padding-top: .5rem; display: grid; gap: .25rem; }
+.settings b { font: 600 .8rem/1.2 var(--f-mono); text-transform: uppercase; letter-spacing: .06em; }
+.settings p { font-size: .92rem; color: var(--muted); }
+
+/* Shot list */
+.progress { font: 600 .9rem/1 var(--f-mono); }
+.group { display: grid; gap: .5rem; }
+.group > h3 { padding: .4rem 0; border-bottom: 3px solid var(--fg); display: flex; justify-content: space-between; gap: 1rem; align-items: baseline; }
+.group > h3 small { font: 600 .72rem/1 var(--f-mono); text-transform: none; color: var(--muted); }
+.shot { display: grid; grid-template-columns: auto 4.2rem minmax(0, 1fr); gap: .75rem; align-items: start; padding: .8rem .2rem; border-bottom: 1px solid var(--line); }
+.shot input { width: 22px; height: 22px; margin-top: .1rem; accent-color: var(--hot); }
+.shot .id { font: 600 .9rem/1.4 var(--f-mono); color: var(--hot); }
+.shot .what { display: grid; gap: .25rem; min-width: 0; }
+.shot .what strong { font-weight: 800; }
+.shot .how { font-size: .88rem; color: var(--muted); }
+.shot .file { font: 400 .78rem/1.3 var(--f-mono); color: var(--muted); overflow-wrap: anywhere; }
+.shot:has(input:checked) .what { opacity: .45; text-decoration: line-through; }
+label.shot { cursor: pointer; }
+.questions { margin: 0; padding-left: 1.2rem; display: grid; gap: .3rem; font-size: .92rem; }
+.note { font-size: .85rem; color: var(--muted); }
+</style>
+
+<div class="wrap">
+  <header class="intro">
+    <p class="label">Website + camera plan</p>
+    <h1>Gael<span>craves</span> shoot plan</h1>
+    <p>Pick a look for the site, then take this list to the kitchen. Every shot has an ID that matches a slot in the website scaffold, so footage drops straight in.</p>
+    <div class="facts">
+      <span>Smash burgers</span><span>Chicken sandwiches</span><span>Loaded fries</span><span>Nachos</span><span>Back of Cruz de Madera Taproom, 148 Main St</span>
+    </div>
+  </header>
+
+  <section>
+    <p class="label">Step 1</p>
+    <h2>Pick a direction</h2>
+    <p>You picked A. The site now opens with people, then food, sells the high-protein angle, and lines items up side by side like Thunderbuns. The other directions stay here for ideas.</p>
+    <div class="dirs">
+      <article class="dir is-built">
+        <header><h3>A. Smash cam</h3><span class="tag">Picked</span></header>
+        <p class="idea">The whole first screen is a slow-motion smash with giant type on top. The video sells the food before anyone reads a word.</p>
+        <ul>
+          <li><a href="https://www.thunderbuns.nl/" target="_blank" rel="noopener">Thunderbuns</a>: Dutch smash burger chain. Video hero, one short line ("Burgers that hit like lightning"), and an Order button repeated about five times down the page.</li>
+          <li><a href="https://tacombi.com/" target="_blank" rel="noopener">Tacombi</a>: background video loop with a pause button, plus hand-drawn illustrations. "Come for tacos. Stay for the vibe."</li>
+          <li><a href="https://www.graza.co/" target="_blank" rel="noopener">Graza</a>: olive oil brand with constant playful motion and a pause-animations control. Good model for tone in product names.</li>
+        </ul>
+      </article>
+
+      <article class="dir">
+        <header><h3>B. Back of the house</h3><span class="tag">Option</span></header>
+        <p class="idea">Lean into the hidden-kitchen story. The menu is printed kitchen tickets, the type looks like a receipt printer, and the walk-in video takes you from Main St to the window.</p>
+        <ul>
+          <li><a href="https://www.highstdeli.com/" target="_blank" rel="noopener">High Street Deli</a>: nostalgic, oversized sandwich photos and a busy neighborhood-shop layout.</li>
+          <li><a href="https://www.loroeats.com/" target="_blank" rel="noopener">Loro</a>: unusual type, illustrations and animation, with sidebar navigation.</li>
+          <li><a href="https://www.mightyfineburgers.com/" target="_blank" rel="noopener">Mighty Fine Burgers</a>: bold red header, retro type, huge burger photos.</li>
+        </ul>
+      </article>
+
+      <article class="dir">
+        <header><h3>C. Street poster</h3><span class="tag">Option</span></header>
+        <p class="idea">Loud and hand-made: spray paint, stickers, cut-out burgers, jokes in the copy. Feels like a flyer stapled to a telephone pole.</p>
+        <ul>
+          <li><a href="https://www.daveshotchicken.com/" target="_blank" rel="noopener">Dave's Hot Chicken</a>: red graffiti hero, black base, ORDER NOW under every slide, emoji in headlines.</li>
+          <li><a href="https://liquiddeath.com/" target="_blank" rel="noopener">Liquid Death</a>: all-caps jokes ("Murder your thirst") on a horror theme. Proof that a voice can be the design.</li>
+          <li><a href="https://streetbirdnyc.com/" target="_blank" rel="noopener">Streetbird</a>: strong contrast and playful graphics for a chicken spot.</li>
+        </ul>
+      </article>
+
+      <article class="dir">
+        <header><h3>D. Matchday</h3><span class="tag">Option</span></header>
+        <p class="idea">The taproom fills up for Mexico and USA games, so dress the site like a match program: menu as a team lineup, hours as a scoreboard, a schedule of upcoming watch parties.</p>
+        <ul>
+          <li><a href="https://www.enderhamburgueseria.com/" target="_blank" rel="noopener">Ender</a>: Argentine smash burger shop with merch and its own party nights ("Ender Club"). Built in Framer.</li>
+          <li><a href="https://ghettogastro.com/" target="_blank" rel="noopener">Ghetto Gastro</a>: culture first, food second, with its own "television" video section.</li>
+          <li><a href="https://www.maonoseattle.com/" target="_blank" rel="noopener">Ma'ono Fried Chicken</a>: bright yellow header and an oversized logo. Shows how far one loud color can carry a small brand.</li>
+        </ul>
+      </article>
+    </div>
+    <p class="note">More to browse: <a href="https://createtoday.io/examples?category=food-and-beverage" target="_blank" rel="noopener">Create Today food gallery</a> (has several food trucks and smash burger shops) and <a href="https://www.sitebuilderreport.com/inspiration/restaurant-websites" target="_blank" rel="noopener">Site Builder Report restaurant list</a>.</p>
+  </section>
+
+  <section>
+    <p class="label">Step 2</p>
+    <h2>Camera setup</h2>
+    <div class="settings">
+      <div><b>Frame rate</b><p>Shoot everything at 60p. On the computer, slowing a 60p clip to 30 fps gives smooth half-speed slow motion for the smash, cheese pulls and sauce pours. Regular-speed clips just get exported at 30 fps.</p></div>
+      <div><b>Shutter</b><p>1/120 at 60p. That keeps motion crisp for slow motion and matches US 60 Hz lights, so there's no flicker. You may need to raise ISO or add the LED light.</p></div>
+      <div><b>Color</b><p>Use Standard or S-Cinetone. Skip S-Log unless you plan to color grade. Set white balance off a white plate under the kitchen lights.</p></div>
+      <div><b>Framing</b><p>Shoot horizontal, but keep the food in the middle third. That lets one clip be cropped to vertical for phones and Reels.</p></div>
+      <div><b>Stillness</b><p>Use a tripod for every loop. A clip that moves can't loop cleanly. Roll 15 to 20 seconds to get one clean 6 to 10 second loop.</p></div>
+      <div><b>Light</b><p>Put a small LED light behind the griddle, aimed toward the lens. Steam and smoke light up and look great on video.</p></div>
+      <div><b>Protect the camera</b><p>Grease spits. Stay 2 to 3 feet back and zoom in, and wipe the lens between shots.</p></div>
+      <div><b>Sound</b><p>Leave the mic on. The site plays clips muted, but the sizzle is gold for Instagram.</p></div>
+    </div>
+  </section>
+
+  <section>
+    <p class="label">Step 3</p>
+    <header style="display:flex;justify-content:space-between;align-items:baseline;gap:1rem;flex-wrap:wrap">
+      <h2>Shot list</h2>
+      <span class="progress" id="progress">0 of 0 done</span>
+    </header>
+    <p class="note">Tap a shot to check it off. Checks are saved in this browser only.</p>
+
+    <div class="group">
+      <h3>Hero <small>person, food, person, food</small></h3>
+      <label class="shot"><input type="checkbox" id="s-H1"><span class="id">H1</span><span class="what"><strong>First bite</strong><span class="how">A customer takes a big bite of a smash burger, eyes close. Tight on the face and burger, 60p, slowed to half speed. Ask first and get a few different people.</span><span class="file">hero-1-bite.mp4</span></span></label>
+      <label class="shot"><input type="checkbox" id="s-H2"><span class="id">H2</span><span class="what"><strong>The smash, from above</strong><span class="how">Beef ball on the flat-top, the press comes down, edges spread out lacy. Overhead on a tripod arm, 60p, slowed to half speed, steam backlit.</span><span class="file">hero-2-smash.mp4</span></span></label>
+      <label class="shot"><input type="checkbox" id="s-H3"><span class="id">H3</span><span class="what"><strong>The reaction</strong><span class="how">Someone hears the macros ("that's how much protein?") and reacts, or friends passing a burger around and laughing. Natural, not posed.</span><span class="file">hero-3-reaction.mp4</span></span></label>
+      <label class="shot"><input type="checkbox" id="s-H4"><span class="id">H4</span><span class="what"><strong>Hero burger turn</strong><span class="how">Finished burger on a slowly spinning plate (a lazy Susan works), eye level, dark background.</span><span class="file">hero-4-burger.mp4</span></span></label>
+      <p class="note">Keep each hero clip 2 to 4 seconds. They play back to back. For phones, crop each to vertical and add "-mobile" to the name.</p>
+    </div>
+
+    <div class="group">
+      <h3>The lineup <small>like Thunderbuns: every item side by side</small></h3>
+      <label class="shot"><input type="checkbox" id="s-L1"><span class="id">L1–L4</span><span class="what"><strong>Side view of each item, identical setup</strong><span class="how">Camera locked on a tripod at food height, same distance, same light, same plain background for every item. Only the food changes. Shoot extra burgers if there are several kinds. Cut the background out later (free tools like remove.bg work) and save as PNG.</span><span class="file">lineup-smash.png, lineup-chicken.png, lineup-fries.png, lineup-nachos.png</span></span></label>
+      <label class="shot"><input type="checkbox" id="s-L5"><span class="id">L5</span><span class="what"><strong>Real numbers</strong><span class="how">Not a shot: get protein, calories, carbs and fat for each item from Christian. They go in the nutrition label under each item.</span></span></label>
+    </div>
+
+    <div class="group">
+      <h3>The swap <small>proof it's lighter</small></h3>
+      <label class="shot"><input type="checkbox" id="s-W1"><span class="id">W1</span><span class="what"><strong>Usual vs. Christian's swap</strong><span class="how">The regular ingredient and his swap side by side on the counter (bun, sauce, cheese), then a hand picks his. Overhead, square framing.</span><span class="file">swap-side-by-side.mp4</span></span></label>
+      <label class="shot"><input type="checkbox" id="s-W2"><span class="id">W2</span><span class="what"><strong>On the scale</strong><span class="how">Protein portion set on a kitchen scale, the number settles. Close up on the display. Fitness TikTok loves this shot.</span><span class="file">swap-scale.mp4</span></span></label>
+    </div>
+
+    <div class="group">
+      <h3>Menu clips <small>play when someone hovers or taps a lineup item</small></h3>
+      <label class="shot"><input type="checkbox" id="s-M1"><span class="id">M1</span><span class="what"><strong>Burger cut in half, cheese pull</strong><span class="how">Finished burger on a dark board, 45 degree angle. Slowly pull the halves apart. 60p, slowed to half speed.</span><span class="file">menu-burger.mp4</span></span></label>
+      <label class="shot"><input type="checkbox" id="s-M2"><span class="id">M2</span><span class="what"><strong>Chicken out of the fryer</strong><span class="how">Basket lifts and shakes, then a hand squeezes the finished sandwich so the crust crackles. Side angle.</span><span class="file">menu-chicken.mp4</span></span></label>
+      <label class="shot"><input type="checkbox" id="s-M3"><span class="id">M3</span><span class="what"><strong>Sauce over loaded fries</strong><span class="how">Straight down from above. Sauce and toppings land on the fries. 60p, slowed to half speed.</span><span class="file">menu-fries.mp4</span></span></label>
+      <label class="shot"><input type="checkbox" id="s-M4"><span class="id">M4</span><span class="what"><strong>Nacho chip lift</strong><span class="how">Close up. One chip pulled out with a long cheese stretch.</span><span class="file">menu-nachos.mp4</span></span></label>
+    </div>
+
+    <div class="group">
+      <h3>How it's made <small>same tripod spot for all five</small></h3>
+      <label class="shot"><input type="checkbox" id="s-S1"><span class="id">S1</span><span class="what"><strong>Ball hits the griddle</strong><span class="how">Camera at griddle height from the side, square framing. Normal speed.</span><span class="file">step-1.mp4</span></span></label>
+      <label class="shot"><input type="checkbox" id="s-S2"><span class="id">S2</span><span class="what"><strong>Smash</strong><span class="how">Same spot. The press and the sizzle burst.</span><span class="file">step-2.mp4</span></span></label>
+      <label class="shot"><input type="checkbox" id="s-S3"><span class="id">S3</span><span class="what"><strong>Scrape and flip</strong><span class="how">Same spot. Make sure the brown crust faces the lens after the flip.</span><span class="file">step-3.mp4</span></span></label>
+      <label class="shot"><input type="checkbox" id="s-S4"><span class="id">S4</span><span class="what"><strong>Cheese melts</strong><span class="how">Same spot. Slice goes on and slumps over the edges.</span><span class="file">step-4.mp4</span></span></label>
+      <label class="shot"><input type="checkbox" id="s-S5"><span class="id">S5</span><span class="what"><strong>Stack and wrap</strong><span class="how">Patties onto the bun, wrapped, bagged, slid across the counter.</span><span class="file">step-5.mp4</span></span></label>
+    </div>
+
+    <div class="group">
+      <h3>Christian <small>the person behind it</small></h3>
+      <label class="shot"><input type="checkbox" id="s-G1"><span class="id">G1</span><span class="what"><strong>Christian at work, looks up</strong><span class="how">Waist up at the griddle, working, then he looks into the lens. Vertical-friendly framing.</span><span class="file">gael-portrait.mp4</span></span></label>
+      <label class="shot"><input type="checkbox" id="s-G2"><span class="id">G2</span><span class="what"><strong>Short interview</strong><span class="how">2 to 3 minutes during a slow hour, sitting in the taproom, with sound. It plays on the Our Story page, and his answers become the story text.</span><ol class="questions"><li>How did Gaelcraves start?</li><li>Why make junk food healthier? What do you swap?</li><li>Where does the name come from?</li><li>What should someone order the first time?</li><li>What do you love about cooking in Soledad?</li><li>Tell me about your fitness journey. What changed?</li><li>What do you want people to feel when they eat here?</li></ol></span></label>
+    </div>
+
+    <div class="group">
+      <h3>Find us <small>the hidden-kitchen walk</small></h3>
+      <label class="shot"><input type="checkbox" id="s-F1"><span class="id">F1</span><span class="what"><strong>Main St to the kitchen window</strong><span class="how">Start on the sidewalk at the Cruz de Madera sign, walk in slowly with small steps, end at the kitchen window. Widest lens, stabilization on. Late afternoon light looks best outside.</span><span class="file">find-walkin.mp4</span></span></label>
+    </div>
+
+    <div class="group">
+      <h3>Photo collage <small>people, prep and food, mixed together</small></h3>
+      <label class="shot"><input type="checkbox" id="s-E1"><span class="id">E1</span><span class="what"><strong>First bites at the tables</strong><span class="how">Wide shot. Customers eating at the taproom tables. Ask before photographing anyone.</span><span class="file">photo-e1.jpg</span></span></label>
+      <label class="shot"><input type="checkbox" id="s-E2"><span class="id">E2</span><span class="what"><strong>Sharing</strong><span class="how">Friends splitting loaded fries or passing nachos. Hands and laughs, faces optional.</span><span class="file">photo-e2.jpg</span></span></label>
+      <label class="shot"><input type="checkbox" id="s-E3"><span class="id">E3</span><span class="what"><strong>Game night</strong><span class="how">Wide shot. The taproom crowd during a match. Check with the taproom owners and keep kids' faces out.</span><span class="file">photo-e3.jpg</span></span></label>
+      <label class="shot"><input type="checkbox" id="s-K1"><span class="id">K1</span><span class="what"><strong>Patties on the scale</strong><span class="how">Close up. Shaping beef balls and weighing them.</span><span class="file">photo-k1.jpg</span></span></label>
+      <label class="shot"><input type="checkbox" id="s-K2"><span class="id">K2</span><span class="what"><strong>Mixing the sauce</strong><span class="how">Tall shot (vertical). Overhead on the sauce bowl. Leave out the recipe if it's secret.</span><span class="file">photo-k2.jpg</span></span></label>
+      <label class="shot"><input type="checkbox" id="s-K3"><span class="id">K3</span><span class="what"><strong>Out of the fryer</strong><span class="how">Chicken lifting out of the oil.</span><span class="file">photo-k3.jpg</span></span></label>
+      <label class="shot"><input type="checkbox" id="s-D1"><span class="id">D1</span><span class="what"><strong>Burger cut in half</strong><span class="how">45 degrees, showing the layers.</span><span class="file">photo-d1.jpg</span></span></label>
+      <label class="shot"><input type="checkbox" id="s-D2"><span class="id">D2</span><span class="what"><strong>Nacho cheese stretch</strong><span class="how">Close up on one chip with a cheese pull.</span><span class="file">photo-d2.jpg</span></span></label>
+      <label class="shot"><input type="checkbox" id="s-D3"><span class="id">D3</span><span class="what"><strong>The full spread</strong><span class="how">Every item on the counter, from above.</span><span class="file">photo-d3.jpg</span></span></label>
+      <p class="note">Shoot E1 and E3 horizontal and K2 vertical, since those take up two cells. Everything else can be either way.</p>
+    </div>
+
+    <div class="group">
+      <h3>Our story page <small>Christian's fitness journey</small></h3>
+      <label class="shot"><input type="checkbox" id="s-J1"><span class="id">J1</span><span class="what"><strong>Training</strong><span class="how">Christian working out, whatever he actually does: gym, running, boxing. Real, not staged.</span><span class="file">story-training.mp4</span></span></label>
+      <label class="shot"><input type="checkbox" id="s-J2"><span class="id">J2</span><span class="what"><strong>Recipe testing</strong><span class="how">Tasting, weighing, writing notes on a new recipe.</span><span class="file">story-testing.mp4</span></span></label>
+      <label class="shot"><input type="checkbox" id="s-J3"><span class="id">J3</span><span class="what"><strong>Regulars talk</strong><span class="how">Two or three regulars say what they order and why, on camera with sound.</span><span class="file">story-regulars.mp4</span></span></label>
+      <label class="shot"><input type="checkbox" id="s-P6–P7"><span class="id">P6–P7</span><span class="what"><strong>Before and now photos</strong><span class="how">Only if he wants to share. An old photo from his phone, and a new one in the same pose.</span><span class="file">story-before.jpg, story-after.jpg</span></span></label>
+      <label class="shot"><input type="checkbox" id="s-P8"><span class="id">P8</span><span class="what"><strong>Early days photo</strong><span class="how">An old phone photo of him cooking when he started.</span><span class="file">story-early.jpg</span></span></label>
+    </div>
+
+    <div class="group">
+      <h3>Photos <small>stills, also useful on Square and DoorDash</small></h3>
+      <label class="shot"><input type="checkbox" id="s-P1"><span class="id">P1</span><span class="what"><strong>Each menu item, clean</strong><span class="how">Every item on the same board in the same spot, shot from 45 degrees and from straight above. These can replace the photos on Square and DoorDash too.</span></span></label>
+      <label class="shot"><input type="checkbox" id="s-P2"><span class="id">P2</span><span class="what"><strong>Gael portrait</strong><span class="how">Apron on, arms crossed or holding a spatula, against the kitchen wall.</span></span></label>
+      <label class="shot"><input type="checkbox" id="s-P3"><span class="id">P3</span><span class="what"><strong>Outside on Main St</strong><span class="how">Storefront and sign, so people know what to look for.</span></span></label>
+      <label class="shot"><input type="checkbox" id="s-P4"><span class="id">P4</span><span class="what"><strong>Details</strong><span class="how">Buns toasting, sauce bottle, ticket rail, spatula on the griddle. Good for texture between sections.</span></span></label>
+      <label class="shot"><input type="checkbox" id="s-P5"><span class="id">P5</span><span class="what"><strong>Share image</strong><span class="how">One wide burger shot with empty space on one side. Shows up when the link is texted or posted.</span><span class="file">og-image.jpg</span></span></label>
+    </div>
+  </section>
+</div>
+
+<script>
+(() => {
+  const boxes = [...document.querySelectorAll('.shot input')];
+  const out = document.getElementById('progress');
+  const KEY = 'gaelcraves-shots';
+  let saved = {};
+  try { saved = JSON.parse(localStorage.getItem(KEY) || '{}'); } catch (e) {}
+  boxes.forEach(b => { b.checked = !!saved[b.id]; });
+  const update = () => {
+    out.textContent = `${boxes.filter(b => b.checked).length} of ${boxes.length} done`;
+    try { localStorage.setItem(KEY, JSON.stringify(Object.fromEntries(boxes.map(b => [b.id, b.checked])))); } catch (e) {}
+  };
+  boxes.forEach(b => b.addEventListener('change', update));
+  update();
+})();
+</script>
+
+</html>

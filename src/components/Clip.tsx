@@ -1,5 +1,5 @@
 // One media slot: a looping video or a photo.
-// Until the file exists in public/media, it shows a striped placeholder.
+// Until the file exists in public/media, it shows a plain dark block.
 import { asset } from "@/lib/site";
 
 // Set to true to show the shot ID labels (e.g. "L1 · The Smash...") on empty slots
@@ -34,7 +34,7 @@ export default function Clip({
 }: Props) {
   return (
     <figure
-      className={`clip clip-stripes group relative m-0 max-w-full overflow-hidden rounded ${className}`}
+      className={`clip group relative m-0 max-w-full overflow-hidden bg-grill-2 ${className}`}
       data-shot={shot}
       {...rest}
     >
@@ -60,7 +60,7 @@ export default function Clip({
         />
       )}
       {SHOW_SHOT_LABELS && (
-        <figcaption className="absolute right-3 bottom-3 left-3 z-0 w-fit rounded bg-grill px-2.5 py-2 font-mono text-[0.8rem] leading-snug font-semibold text-flame group-[.is-loaded]:hidden">
+        <figcaption className="absolute right-3 bottom-3 left-3 z-0 w-fit bg-grill px-2.5 py-2 text-[0.8rem] leading-snug font-semibold text-flame group-[.is-loaded]:hidden">
           {shot} · {label}
         </figcaption>
       )}

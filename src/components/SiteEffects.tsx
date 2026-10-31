@@ -27,7 +27,7 @@ export default function SiteEffects() {
       video.dataset.loaded = "1";
       video.src = video.dataset.src;
       // Hide the placeholder label once real footage is ready. If the file is missing,
-      // the striped placeholder with the shot ID stays visible.
+      // the plain placeholder stays visible.
       on(video, "loadeddata", () => markLoaded(video));
     };
     const play = (video: HTMLVideoElement) => {

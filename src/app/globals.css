@@ -10,7 +10,7 @@
 @theme {
   --color-grill: #110c0a;   /* page background */
   --color-grill-2: #22140f; /* raised surfaces */
-  --color-char: #4a2a1e;    /* lines, placeholder stripes */
+  --color-char: #4a2a1e;    /* lines */
   --color-orange: #d8590d;  /* anything you can tap */
   --color-flame: #fdb835;   /* highlights */
   --color-cream: #fee7cb;   /* paper, labels */
@@ -20,16 +20,11 @@
 
   --font-display: "Bowlby One", "Arial Black", Impact, sans-serif;
   --font-body: "Archivo", "Helvetica Neue", Arial, sans-serif;
-  --font-mono: "IBM Plex Mono", ui-monospace, Menlo, monospace;
-
-  --animate-ticker: ticker 22s linear infinite;
-  @keyframes ticker {
-    to { transform: translateX(-50%); }
-  }
 }
 
 @layer base {
-  html { scroll-behavior: smooth; }
+  html { scroll-behavior: smooth; scroll-padding-top: 112px; }
+  @media (width >= 48rem) { html { scroll-padding-top: 80px; } }
   body {
     @apply bg-grill text-text font-body antialiased overflow-x-clip;
     font-size: 1.0625rem;
@@ -42,30 +37,6 @@
   :focus-visible { @apply outline-3 outline-offset-3 outline-flame; }
 }
 
-/*
-  A few things are easier to read as plain CSS than as a long row of classes.
-  Each one is used by exactly one component.
-*/
-@layer components {
-  /* Striped placeholder that shows until a photo or video exists (Clip.tsx) */
-  .clip-stripes {
-    background: repeating-linear-gradient(-45deg, var(--color-grill-2) 0 18px, var(--color-char) 18px 36px);
-  }
-
-  /* Nutrition Facts style label (MenuItem.tsx) */
-  .macros { @apply grid grid-cols-3 gap-x-2 border-2 border-ink bg-cream px-3 py-2; }
-  .macros > div { @apply grid gap-0.5 pt-1.5; }
-  .macros dt { @apply text-[0.7rem] font-semibold uppercase tracking-wide; }
-  .macros dd { @apply text-xl leading-none font-extrabold tabular-nums; }
-  .macros .macros-big { @apply col-span-3 flex items-baseline justify-between border-b-8 border-ink pb-1.5; }
-  .macros .macros-big dt { @apply text-lg normal-case tracking-normal font-extrabold; }
-  .macros .macros-big dd { @apply text-4xl text-orange; }
-
-  /* Ticker: a star between words (Ticker.tsx) */
-  .ticker-item::after { content: "✶"; @apply ml-12 text-orange; }
-}
-
 @media (prefers-reduced-motion: reduce) {
   html { scroll-behavior: auto; }
-  .animate-ticker { animation: none; }
 }

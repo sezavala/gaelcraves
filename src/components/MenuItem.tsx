@@ -1,37 +1,33 @@
-// One item in the lineup: side-view photo (clip plays on hover or tap), name, macros, price.
-// The card is a subgrid of the lineup, so each of its 6 parts sits on a shared row.
-import Clip from "./Clip";
-import Button from "./Button";
-import { orDash, pad2 } from "@/lib/format";
+// One line on the menu board: name, dotted line, price, then what's in it and the macros.
+import { orDash } from "@/lib/format";
 import type { MenuItem as Item } from "@/lib/site";
 
-export default function MenuItem({ item, index }: { item: Item; index: number }) {
+export default function MenuItem({ item }: { item: Item }) {
   const m = item.macros;
+  const macros = [
+    ["protein", m.protein, "g"],
+    ["cal", m.calories, ""],
+    ["carbs", m.carbs, "g"],
+    ["fat", m.fat, "g"],
+  ];
   return (
-    <article className="row-span-6 grid min-w-0 grid-rows-subgrid">
-      <Clip
-        shot={item.shot}
-        label={`${item.name}, straight-on side view`}
-        photo={item.photo}
-        alt={`${item.name}, side view`}
-        video={item.clip}
-        play="manual"
-        data-hover-clip=""
-        className="aspect-square ![background:color-mix(in_srgb,var(--color-ink)_14%,var(--color-orange))] [&_img]:object-contain [&_video]:opacity-0 [&_video]:transition-opacity [&.is-playing_video]:opacity-100"
-      />
-      <p className="mt-2 self-end font-mono text-xs font-semibold tracking-widest uppercase">#{pad2(index + 1)} · {item.category}</p>
-      <h3 className="self-start text-[clamp(1.5rem,2.4vw,2rem)]">{item.name}</h3>
-      <p className="text-[0.95rem]">{item.description}</p>
-      <dl className="macros mt-1 self-start">
-        <div className="macros-big"><dt>Protein</dt><dd>{orDash(m.protein)}<small className="text-[0.7em]">g</small></dd></div>
-        <div><dt>Calories</dt><dd>{orDash(m.calories)}</dd></div>
-        <div><dt>Carbs</dt><dd>{orDash(m.carbs)}<small className="text-[0.7em]">g</small></dd></div>
-        <div><dt>Fat</dt><dd>{orDash(m.fat)}<small className="text-[0.7em]">g</small></dd></div>
-      </dl>
-      <div className="flex items-center justify-between gap-4 self-start pb-10 lg:pb-0">
-        <span className="font-mono text-xl font-semibold">${orDash(item.price)}</span>
-        <Button variant="small" order orderItem={item.squareUrl}>Order this</Button>
-      </div>
+    <article id={`item-${item.shot}`} className="border-b border-dashed border-ink/40 py-5 last:border-0 md:[&:nth-last-child(2)]:border-0">
+      <h3 className="flex items-baseline gap-3 text-[clamp(1.3rem,2.2vw,1.7rem)]">
+        <span>{item.name}</span>
+        <span className="mb-1 flex-1 border-b-3 border-dotted border-ink/50" aria-hidden="true" />
+        <span className="tabular-nums">${orDash(item.price)}</span>
+      </h3>
+      <p className="mt-2 whitespace-pre-line">{item.description}</p>
+      <p className="mt-2 text-sm">
+        {macros.map(([label, value, unit]) => (
+          <span key={label} className="mr-4 inline-block">
+            <b className="text-base text-orange">{orDash(value)}{value ? unit : ""}</b> {label}
+          </span>
+        ))}
+        {item.squareUrl && (
+          <a href={item.squareUrl} target="_blank" rel="noopener" className="font-semibold underline underline-offset-4">Order this</a>
+        )}
+      </p>
     </article>
   );
 }

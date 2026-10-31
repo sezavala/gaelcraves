@@ -11,10 +11,11 @@
     "doordashUrl": "https://www.doordash.com/store/gaelcraves-soledad-46345389/",
     "squareOrderUrl": "https://REPLACE-ME.square.site/"
   },
-
   "hero": {
-    "eyebrow": "Soledad, CA · Inside Cruz de Madera Taproom",
-    "titleLines": ["Fuel", "your"],
+    "titleLines": [
+      "Fuel",
+      "your"
+    ],
     "titleHighlight": "Cravings!",
     "sub": "Smash burgers, chicken sandwiches, loaded fries and nachos, rebuilt by Christian with leaner swaps and way more protein.",
     "orderButton": "Order for pickup",
@@ -23,24 +24,13 @@
       "hero-2-smash",
       "hero-3-reaction",
       "hero-4-burger"
-    ],
-    "placeholder": "H1 bite → H2 smash → H3 reaction → H4 burger turn"
+    ]
   },
-
-  "ticker": [
-    "Air-fried",
-    "High protein",
-    "Lower calorie",
-    "Same taste",
-    "Smash burgers",
-    "Loaded fries",
-    "Nachos",
-    "Kid meals"
-  ],
-
   "menu": {
-    "eyebrow": "The lineup",
-    "titleLines": ["Same crave.", "Better macros."],
+    "titleLines": [
+      "Same crave.",
+      "Better macros."
+    ],
     "items": [
       {
         "shot": "L1",
@@ -48,7 +38,12 @@
         "name": "Bacon Jalapeño Smash",
         "description": "Double-cheeseburger with grilled onions, Gaelcraves Jalapeño sauce, bacon, fresh jalapeños & a side of fries.",
         "price": "18.00",
-        "macros": { "protein": "", "calories": "", "carbs": "", "fat": "" },
+        "macros": {
+          "protein": "",
+          "calories": "",
+          "carbs": "",
+          "fat": ""
+        },
         "photo": "media/lineup-smash.png",
         "clip": "media/menu-burger.mp4",
         "squareUrl": ""
@@ -57,9 +52,14 @@
         "shot": "L2",
         "category": "Protein-Packed",
         "name": "Chicken Sandwich Combo",
-        "description": "Air fried crispy chicken sandwich + fries.\n\bFlavors: Original, Spicy, Hot Honey, and Nashville Hot Oil",
+        "description": "Air fried crispy chicken sandwich + fries.\nFlavors: Original, Spicy, Hot Honey, and Nashville Hot Oil",
         "price": "14.00",
-        "macros": { "protein": "", "calories": "", "carbs": "", "fat": "" },
+        "macros": {
+          "protein": "",
+          "calories": "",
+          "carbs": "",
+          "fat": ""
+        },
         "photo": "media/lineup-chicken.png",
         "clip": "media/menu-chicken.mp4",
         "squareUrl": ""
@@ -70,7 +70,12 @@
         "name": "Carne Asada Fries",
         "description": "Fries, cheese, carne asada, pico de gallo, Gaelcraves jalapeño sauce & a side of fries.",
         "price": "16.00",
-        "macros": { "protein": "", "calories": "", "carbs": "", "fat": "" },
+        "macros": {
+          "protein": "",
+          "calories": "",
+          "carbs": "",
+          "fat": ""
+        },
         "photo": "media/lineup-fries.png",
         "clip": "media/menu-fries.mp4",
         "squareUrl": ""
@@ -81,16 +86,19 @@
         "name": "Buffalo-Ranch Nachos",
         "description": "Tortilla chips, buffalo chicken, ranch drizzle, lettuce & green onions.",
         "price": "15.00",
-        "macros": { "protein": "", "calories": "", "carbs": "", "fat": "" },
+        "macros": {
+          "protein": "",
+          "calories": "",
+          "carbs": "",
+          "fat": ""
+        },
         "photo": "media/lineup-nachos.png",
         "clip": "media/menu-nachos.mp4",
         "squareUrl": ""
       }
     ]
   },
-
   "photos": {
-    "eyebrow": "The taproom events",
     "title": "Join in on the fun!",
     "items": [
       {
@@ -149,17 +157,35 @@
       }
     ]
   },
-
   "swap": {
-    "eyebrow": "The swap",
     "title": "Junk food, rebuilt",
     "text": "Christian takes the food everybody craves and rewrites the recipe: leaner swaps where you won't miss them, more protein everywhere. It still eats like a cheat meal.",
     "rows": [
-      { "part": "Patty", "usual": "", "ours": "" },
-      { "part": "Bun", "usual": "", "ours": "" },
-      { "part": "Sauce", "usual": "", "ours": "" },
-      { "part": "Cheese", "usual": "", "ours": "" },
-      { "part": "Fries", "usual": "", "ours": "" }
+      {
+        "part": "Patty",
+        "usual": "",
+        "ours": ""
+      },
+      {
+        "part": "Bun",
+        "usual": "",
+        "ours": ""
+      },
+      {
+        "part": "Sauce",
+        "usual": "",
+        "ours": ""
+      },
+      {
+        "part": "Cheese",
+        "usual": "",
+        "ours": ""
+      },
+      {
+        "part": "Fries",
+        "usual": "",
+        "ours": ""
+      }
     ],
     "clips": [
       {
@@ -176,9 +202,7 @@
       }
     ]
   },
-
   "howItsMade": {
-    "eyebrow": "From ball to bag",
     "title": "How a smash burger happens",
     "steps": [
       {
@@ -223,34 +247,45 @@
       }
     ]
   },
-
   "about": {
-    "eyebrow": "The cook",
     "title": "Meet Christian",
     "text": "Christian Gael Morones Segovia loves the food everyone wants to eat and hates what it does to you. So he writes his own recipes: lower-calorie swaps, high protein, nothing that tastes like diet food. He cooks every order in the kitchen at the back of Cruz de Madera Taproom on Main Street.",
     "quote": "I LOVE SERGIO ZAVALA!!"
   },
-
   "find": {
-    "eyebrow": "Find Gaelcraves",
     "title": "Back of Cruz de Madera Taproom",
     "hours": [
-      { "days": "Mon-Tue", "time": "CLOSED" },
-      { "days": "Wed", "time": "3:30-8PM" },
-      { "days": "Thur", "time": "2:30-8PM" },
-      { "days": "Fri-Sat", "time": "12:30-9PM" },
-      { "days": "Sun", "time": "12:30-6PM" }
+      {
+        "days": "Mon-Tue",
+        "time": "CLOSED"
+      },
+      {
+        "days": "Wed",
+        "time": "3:30-8PM"
+      },
+      {
+        "days": "Thur",
+        "time": "2:30-8PM"
+      },
+      {
+        "days": "Fri-Sat",
+        "time": "12:30-9PM"
+      },
+      {
+        "days": "Sun",
+        "time": "12:30-6PM"
+      }
     ],
     "note": "All ages. Grab a table in the taproom and catch the game while you wait."
   },
-
   "story": {
-    "eyebrow": "Our story",
     "title": "Food you crave, made to fuel you",
     "photo": {
       "src": "media/story-christian.jpg",
       "alt": "Christian in the Gaelcraves kitchen"
     },
-    "paragraphs": ["Motivational story from christmas!"]
+    "paragraphs": [
+      "Motivational story from christmas!"
+    ]
   }
 }

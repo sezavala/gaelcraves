@@ -1,6 +1,5 @@
 // Home page: just the sections, in order. Each one lives in src/components.
 import Hero from "@/components/Hero";
-import Ticker from "@/components/Ticker";
 import Lineup from "@/components/Lineup";
 import Collage from "@/components/Collage";
 import Swap from "@/components/Swap";
@@ -12,7 +11,6 @@ export default function Home() {
   return (
     <>
       <Hero />
-      <Ticker />
       <Lineup />
       <Collage />
       <Swap />

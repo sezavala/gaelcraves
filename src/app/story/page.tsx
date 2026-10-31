@@ -12,9 +12,9 @@ export const metadata: Metadata = {
 export default function StoryPage() {
   return (
     <Chapter story={site.story}>
-      <div className="mt-2 flex flex-wrap gap-4">
+      <div className="mt-2 flex flex-wrap items-center gap-x-8 gap-y-4">
         <Button order size="lg">Order for pickup</Button>
-        <Button href="/#menu" variant="ghost" size="lg">See the menu</Button>
+        <Button href="/#menu" variant="link">See the menu</Button>
       </div>
     </Chapter>
   );

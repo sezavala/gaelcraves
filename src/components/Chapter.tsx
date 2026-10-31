@@ -1,7 +1,6 @@
 // The Our Story block: one photo with the story text next to it.
 // Everything shown here comes from "story" in src/data/site.json.
 import Clip from "./Clip";
-import Eyebrow from "./Eyebrow";
 import type { Story } from "@/lib/site";
 
 export default function Chapter({ story, children }: { story: Story; children?: React.ReactNode }) {
@@ -13,10 +12,9 @@ export default function Chapter({ story, children }: { story: Story; children?: 
         className="aspect-[4/5]"
       />
       <div className="grid max-w-[38rem] gap-5">
-        <Eyebrow>{story.eyebrow}</Eyebrow>
         <h1 className="text-[clamp(2.4rem,6vw,4.5rem)]">{story.title}</h1>
         {story.paragraphs.map((p, i) => (
-          <p key={i} className="text-lg text-muted">
+          <p key={i} className="text-lg">
             {p}
           </p>
         ))}

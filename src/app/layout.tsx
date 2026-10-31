@@ -36,7 +36,7 @@ export default function RootLayout({
         />
         <link
           rel="stylesheet"
-          href="https://fonts.googleapis.com/css2?family=Bowlby+One&family=Archivo:wght@400;600;800&family=IBM+Plex+Mono:wght@400;600&display=swap"
+          href="https://fonts.googleapis.com/css2?family=Bowlby+One&family=Archivo:wght@400;600;800&display=swap"
         />
       </head>
       <body>
